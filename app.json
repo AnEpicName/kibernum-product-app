@@ -23,7 +23,7 @@
       "package": "com.anonymous.kibernumproductapptest"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
     }
   }
 }
