@@ -3,14 +3,20 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     backgroundColor: "#fff",
     padding: 0,
+    alignItems: "center",
+    width: "100%",
+  },
+  contentContainer: {
+    alignItems: "center",
+    paddingBottom: 100,
     paddingLeft: 20,
     paddingRight: 20,
   },
   productImage: {
     marginTop: 20,
+    marginBottom: 20,
     width: "100%",
     height: 300,
     resizeMode: "contain",
@@ -38,7 +44,7 @@ const styles = StyleSheet.create({
   addToCartButton: {
     position: "absolute",
     bottom: 20,
-    width: "100%",
+    width: "90%",
     backgroundColor: "#4287f5",
     borderRadius: 10,
     padding: 10,

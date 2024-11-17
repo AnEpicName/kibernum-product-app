@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
     },
     categoryName: {
-        fontSize: 16,
+        fontSize: 14,
         textAlign: "left",
         marginBottom: 10,
         alignSelf: "flex-start",
