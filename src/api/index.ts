@@ -1,3 +1,4 @@
+import * as ProductRequests from "./product";
 import * as UserRequests from "./user";
 
-export { UserRequests };
+export { ProductRequests, UserRequests };

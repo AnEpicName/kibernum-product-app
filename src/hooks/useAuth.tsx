@@ -19,6 +19,10 @@ const useAuth = () => {
     }, [auth.token]);
 
     const login = async (username: string, password: string) => {
+        if (!username || !password) {
+            dispatch(setError("Por favor, rellene todos los campos para ingresar."));
+            return;
+        }
         try {
             const response = await UserRequests.loginUser(username, password);
             dispatch(setToken(response.data.token));

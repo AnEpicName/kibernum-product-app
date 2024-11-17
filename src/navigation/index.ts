@@ -11,6 +11,9 @@ const RootStack = createNativeStackNavigator({
         Login: {
             screen: LoginScreen,
             path: "login",
+            options: {
+                headerShown: false,
+            },
         },
         ProductDetail: {
             screen: ProductDetailScreen,

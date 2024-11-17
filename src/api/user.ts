@@ -1,6 +1,6 @@
 import { API_URL } from "@/constants";
 import { Auth } from "@/types/auth";
-import axios, { Axios, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export const loginUser = async (
     username: string, password: string
