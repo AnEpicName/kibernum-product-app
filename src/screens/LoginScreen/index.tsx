@@ -2,13 +2,13 @@ import useAuth from "@/hooks/useAuth";
 import { useAppSelector } from "@app/hooks";
 import { AuthSelector } from "@app/slices/authSlice";
 import { useState } from "react";
-import { Text, TextInput, View, Modal, TouchableOpacity, TouchableWithoutFeedback, Pressable, Image, KeyboardAvoidingView, Platform } from "react-native";
+import { Text, TextInput, View, Modal, TouchableOpacity, TouchableWithoutFeedback, Pressable, Image, KeyboardAvoidingView, Platform, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import styles from "./styles";
 
 const Login = () => {
-  const { login, clearError } = useAuth();
+  const { loading, login, clearError } = useAuth();
 
   const auth = useAppSelector(AuthSelector);
 
@@ -53,7 +53,11 @@ const Login = () => {
             }}
             android_ripple={{ color: "#59B6EB" }}
           >
-            <Text style={styles.loginButtonText}>Sign In</Text>
+            {loading ?
+              <ActivityIndicator size="small" color="#fff" />
+              :
+              <Text style={styles.loginButtonText}>Sign In</Text>
+            }
           </Pressable>
         </View>
         <Modal
