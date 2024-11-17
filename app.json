@@ -20,7 +20,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.kibernumproductapptest"
+      "package": "com.kibernum.demostore"
     },
     "web": {
       "favicon": "./assets/favicon.png",

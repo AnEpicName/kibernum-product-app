@@ -2,7 +2,7 @@ import useAuth from "@/hooks/useAuth";
 import { useAppSelector } from "@app/hooks";
 import { AuthSelector } from "@app/slices/authSlice";
 import { useState } from "react";
-import { Button, Text, TextInput, View, Modal, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { Text, TextInput, View, Modal, TouchableOpacity, TouchableWithoutFeedback, Pressable, Image, KeyboardAvoidingView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import styles from "./styles";
@@ -12,51 +12,68 @@ const Login = () => {
 
   const auth = useAppSelector(AuthSelector);
 
-  const [username, setUsername] = useState<string>("mor_2314");
+  const [username, setUsername] = useState<string>("mor_2314s");
   const [password, setPassword] = useState<string>("83r5^_");
 
+  const Separator = () => <View style={styles.separator} />;
+
   return (
-    <SafeAreaView style={styles.constainer}>
-      <View>
-        <Text>Login Screen</Text>
-        <TextInput
-          placeholder="Nombre de usuario"
-          style={styles.input}
-          value={username}
-          onChangeText={setUsername}
-        />
-        <TextInput
-          placeholder="Contraseña"
-          style={styles.input}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={true}
-        />
-        <Button
-          title="Iniciar Sesión"
-          onPress={() => {
-            //navigation.navigate("ProductList")
-            login(username, password);
-          }}
-        />
-      </View>
-      <Modal
-        visible={auth.error !== undefined}
-        animationType="slide"
-        transparent={true}
-      >
-        <TouchableWithoutFeedback onPress={() => clearError()}>
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalView}>
-              <TouchableOpacity style={styles.closeButton} onPress={() => clearError()}>
-                <Text style={styles.closeButtonText}>X</Text>
-              </TouchableOpacity>
-              <Text style={styles.modalText}>{auth.error}</Text>
+    <KeyboardAvoidingView
+      style={styles.mainContainer}
+    >
+      <View style={styles.constainer}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require("../../assets/kibernum_logo.png")}
+            style={styles.logo}
+          />
+          <Text style={styles.logoTitle}>Kibernum Store</Text>
+        </View>
+        <Separator />
+        <View style={styles.formContainer}>
+          <Text style={styles.loginTitle}>Welcome to Kibernum Store</Text>
+          <Text style={styles.loginSubtitle}>Please enter your credentials to start shopping</Text>
+          <TextInput
+            placeholder="Nombre de usuario"
+            style={styles.input}
+            value={username}
+            onChangeText={setUsername}
+          />
+          <TextInput
+            placeholder="Contraseña"
+            style={styles.input}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={true}
+          />
+          <Pressable
+            style={styles.loginButton}
+            onPress={() => {
+              login(username, password);
+            }}
+            android_ripple={{ color: "#59B6EB" }}
+          >
+            <Text style={styles.loginButtonText}>Sign In</Text>
+          </Pressable>
+        </View>
+        <Modal
+          visible={auth.error !== undefined}
+          animationType="slide"
+          transparent={true}
+        >
+          <TouchableWithoutFeedback onPress={() => clearError()}>
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalView}>
+                <TouchableOpacity style={styles.closeButton} onPress={() => clearError()}>
+                  <Text style={styles.closeButtonText}>X</Text>
+                </TouchableOpacity>
+                <Text style={styles.modalText}>{auth.error}</Text>
+              </View>
             </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
-    </SafeAreaView>
+          </TouchableWithoutFeedback>
+        </Modal>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
