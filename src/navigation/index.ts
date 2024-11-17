@@ -18,6 +18,11 @@ const RootStack = createNativeStackNavigator({
         ProductDetail: {
             screen: ProductDetailScreen,
             path: "product-detail",
+            options: {
+                headerShown: true,
+                headerTitle: "Detalle del producto",
+                headerTitleAlign: "center",
+            },
         },
         ProductList: {
             screen: ProductListScreen,
