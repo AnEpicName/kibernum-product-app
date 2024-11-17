@@ -4,12 +4,9 @@ import styles from "./styles";
 import { StaticScreenProps, useRoute } from "@react-navigation/native";
 import { Product } from "@/types/product";
 import { Category, SizeSelector } from "@/components";
+import { ProductDetailScreenProps } from "@/types/navigation";
 
-type Props = StaticScreenProps<{
-  product: Product;
-}>
-
-const ProductDetailScreen = ({ route }: Props) => {
+const ProductDetailScreen = ({ route }: ProductDetailScreenProps) => {
   const { product } = route.params;
 
   return (

@@ -1,8 +1,8 @@
 import { Product } from "@/types/product";
 
 export interface AuthState {
-  token: string;
-  error?: string;
+    isLoggedIn: boolean;
+    error?: string;
 }
 
 export interface ProductState {

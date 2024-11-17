@@ -1,6 +1,7 @@
 import { UserRequests } from "@/api";
 import { useAppDispatch, useAppSelector } from "@app/hooks";
-import { setToken, setError, AuthSelector } from "@app/slices/authSlice";
+import { setError, AuthSelector, setIsLoggedIn } from "@app/slices/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 
@@ -13,12 +14,21 @@ const useAuth = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (auth.token) {
+        getToken();
+    }, []);
+
+    const getToken = async () => {
+        const token = await AsyncStorage.getItem("token");
+        console.log(token);
+        
+        if (token) {
+            dispatch(setIsLoggedIn(true));
             navigation.navigate("ProductList" as never);
         } else {
+            dispatch(setIsLoggedIn(false));
             navigation.navigate("Login" as never);
         }
-    }, [auth.token]);
+    };
 
     const login = async (username: string, password: string) => {
         if (!username || !password) {
@@ -28,7 +38,8 @@ const useAuth = () => {
         setLoading(true);
         try {
             const response = await UserRequests.loginUser(username, password);
-            dispatch(setToken(response.data.token));
+            await AsyncStorage.setItem("token", response.data.token);
+            getToken();
         } catch (error: any) {
             dispatch(setError(error.response.data));
         }

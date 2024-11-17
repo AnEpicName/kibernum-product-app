@@ -3,7 +3,7 @@ import { RootState } from "@app/store";
 import { AuthState } from "@app/types";
 
 const initialState: AuthState = {
-  token: "",
+  isLoggedIn: false,
   error: undefined,
 };
 
@@ -11,8 +11,8 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
   reducers: {
-    setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
+    setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedIn = action.payload;
     },
     setError: (state, action: PayloadAction<string | undefined>) => {
       state.error = action.payload;
@@ -20,7 +20,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setToken, setError } = authSlice.actions;
+export const { setIsLoggedIn, setError } = authSlice.actions;
 
 export const AuthSelector = (state: RootState) => state.auth;
 
