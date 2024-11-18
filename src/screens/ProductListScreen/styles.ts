@@ -4,18 +4,19 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#fff",
     padding: 0,
     height: "100%",
     width: "100%",
+    flexDirection: "column",
   },
   productList: {
-    top: 40,
+    marginTop: 10,
     paddingHorizontal: 5,
     width: "90%",
-    marginBottom: 50,
+    marginBottom: 10,
 },
   loading: {
     position: "absolute",

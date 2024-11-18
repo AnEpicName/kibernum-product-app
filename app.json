@@ -23,7 +23,12 @@
       "package": "com.kibernum.demostore"
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "89dd6b8b-dd07-40d1-98a5-0505fce035c3"
+      }
     }
   }
 }

@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   searchBar: {
     width: "85%",
-    position: "absolute",
     top: 10,
   },
   searchInput: {

@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLOURS.PRIMARY,
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
-    paddingTop: 50
   },
   profilePicContainer: {
     flexDirection: "row",
