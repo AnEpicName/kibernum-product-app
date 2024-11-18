@@ -1,42 +1,53 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LoginScreen, ProductDetailScreen, ProductListScreen } from "../screens";
-import { createStaticNavigation, NavigationContainer, ParamListBase, RouteProp, StaticScreenProps } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigationContainer } from "@react-navigation/native";
 import { useAppSelector } from "@app/hooks";
 import { AuthSelector } from "@app/slices/authSlice";
 import { ProductDetailScreenProps } from "@/types/navigation";
+import { CloseSessionModal, CustomHeader } from "@/components";
+import { Modal } from "react-native";
+import { useState } from "react";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
     const auth = useAppSelector(AuthSelector);
 
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <NavigationContainer>
             <Stack.Navigator>
                 {auth.isLoggedIn ? (
                     <>
-                        <Stack.Screen 
-                            name="ProductList" 
-                            component={ProductListScreen} 
-                            options={{ 
-                                headerShown: false 
+                        <Stack.Screen
+                            name="ProductList"
+                            component={ProductListScreen}
+                            options={{
+                                header: () => <CustomHeader onProfilePicPress={() => setShowModal(true)} />,
                             }}
-                
                         />
-                        <Stack.Screen 
-                            name="ProductDetail" 
+                        <Stack.Screen
+                            name="ProductDetail"
                             options={{ headerShown: true, headerTitle: "Detalle del producto", headerTitleAlign: "center" }}
                         >
-                             {({ route }: ProductDetailScreenProps) => 
+                            {({ route }: ProductDetailScreenProps) =>
                                 <ProductDetailScreen route={route} />
                             }
                         </Stack.Screen>
                     </>
                 ) : (
-                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen 
+                        name="Login" 
+                        component={LoginScreen} 
+                        options={{ headerShown: false }}
+                    />
                 )}
             </Stack.Navigator>
+            <CloseSessionModal 
+                visible={showModal} 
+                onClose={() => setShowModal(false)}
+            />
         </NavigationContainer>
     )
 }

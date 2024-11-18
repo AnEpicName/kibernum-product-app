@@ -1,13 +1,17 @@
-import { Button, Image, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Image, Pressable, ScrollView, Text, View } from "react-native";
 
 import styles from "./styles";
-import { StaticScreenProps, useRoute } from "@react-navigation/native";
-import { Product } from "@/types/product";
+import { useNavigation } from "@react-navigation/native";
 import { Category, SizeSelector } from "@/components";
 import { ProductDetailScreenProps } from "@/types/navigation";
+import { useState } from "react";
 
 const ProductDetailScreen = ({ route }: ProductDetailScreenProps) => {
   const { product } = route.params;
+
+  const navigation = useNavigation();
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <View style={styles.container} >
@@ -24,13 +28,22 @@ const ProductDetailScreen = ({ route }: ProductDetailScreenProps) => {
       <Pressable 
         style={styles.addToCartButton}
         android_ripple={{ color: "#59B6EB" }}
+        onPress={() => {
+          setLoading(true);
+          setTimeout(() => {
+            navigation.navigate("ProductList");
+            setLoading(false);
+          }, 2000);
+        }}
       >
-        <Text style={styles.addToCartButtonText}>Agregar al carrito</Text>
+        {loading ?
+          <ActivityIndicator size="small" color="#fff" />
+          :
+          <Text style={styles.addToCartButtonText}>Agregar al carrito</Text>
+        }
       </Pressable>
     </View>
-
   );
-
 };
 
 export default ProductDetailScreen;

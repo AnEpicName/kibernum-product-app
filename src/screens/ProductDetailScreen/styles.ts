@@ -1,3 +1,4 @@
+import { COLOURS } from "@/constants";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontSize: 20,
-    color: "#4287f5",
+    color: COLOURS.PRIMARY,
     textAlign: "left",
     left: 0,
     alignSelf: "flex-start",
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 20,
     width: "90%",
-    backgroundColor: "#4287f5",
+    backgroundColor: COLOURS.PRIMARY,
     borderRadius: 10,
     padding: 10,
     height: 60,

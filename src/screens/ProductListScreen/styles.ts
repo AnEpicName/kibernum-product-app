@@ -6,7 +6,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-    padding: 0
+    padding: 0,
+    height: "100%",
+    width: "100%",
+    top: -30,
   },
   productList: {
     paddingHorizontal: 5,

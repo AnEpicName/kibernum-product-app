@@ -46,11 +46,17 @@ const useAuth = () => {
         setLoading(false);
     };
 
+    const logout = async () => {
+        await AsyncStorage.removeItem("token");
+        dispatch(setIsLoggedIn(false));
+        dispatch(setError(undefined));
+    };
+
     const clearError = () => {
         dispatch(setError(undefined));
     };
 
-    return { loading, login, clearError };
+    return { loading, login, logout, clearError };
 }
 
 export default useAuth;

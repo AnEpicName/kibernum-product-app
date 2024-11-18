@@ -15,7 +15,6 @@ const ProductListScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <FlatList
         data={filteredProducts}
         renderItem={({ item }) => 
