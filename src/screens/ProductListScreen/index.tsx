@@ -1,11 +1,11 @@
 import { ActivityIndicator, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Card, SearchBar } from "@/components";
-import { useEffect, useState } from "react";
+import { Card, ErrorModal, SearchBar } from "@/components";
+import { useState } from "react";
 import { Product } from "@/types/product";
 import { useNavigation } from "@react-navigation/native";
-import { useAppSelector } from "@app/hooks";
-import { ProductSelector } from "@app/slices/productSlice";
+import { useAppDispatch, useAppSelector } from "@app/hooks";
+import { ProductSelector, setError } from "@app/slices/productSlice";
 
 import styles from "./styles";
 
@@ -14,6 +14,7 @@ const ProductListScreen = () => {
   const navigation = useNavigation();
 
   const product = useAppSelector(ProductSelector);
+  const dispatch = useAppDispatch();
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
@@ -36,8 +37,12 @@ const ProductListScreen = () => {
         :
         <ActivityIndicator size="large" style={styles.loading} />
       }
+      <ErrorModal
+        visible={product.error !== undefined}
+        onClose={() => setError(undefined)}
+        message={product.error}
+      />
     </SafeAreaView>
-
   );
 };
 

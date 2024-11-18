@@ -19,11 +19,11 @@ const useProducts = () => {
         try {
             const response = await ProductRequests.getProducts();
             setData(response.data);        
-            dispatch(setLoading(false));    
         } catch (error: any) {
             dispatch(setError(error.response.data));
-            dispatch(setLoading(false));
         }
+        dispatch(setLoading(false));
+
     };
 
     return {

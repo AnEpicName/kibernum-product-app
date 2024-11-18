@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Text, TextInput, View, Modal, TouchableOpacity, TouchableWithoutFeedback, Pressable, Image, KeyboardAvoidingView, Platform, ActivityIndicator } from "react-native";
 
 import styles from "./styles";
+import { ErrorModal } from "@/components";
 
 const Login = () => {
   const { loading, login, clearError } = useAuth();
@@ -59,22 +60,11 @@ const Login = () => {
             }
           </Pressable>
         </View>
-        <Modal
-          visible={auth.error !== undefined}
-          animationType="slide"
-          transparent={true}
-        >
-          <TouchableWithoutFeedback onPress={() => clearError()}>
-            <View style={styles.modalOverlay}>
-              <View style={styles.modalView}>
-                <TouchableOpacity style={styles.closeButton} onPress={() => clearError()}>
-                  <Text style={styles.closeButtonText}>X</Text>
-                </TouchableOpacity>
-                <Text style={styles.modalText}>{auth.error}</Text>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </Modal>
+        <ErrorModal 
+          visible={auth.error !== undefined} 
+          onClose={() => clearError()} 
+          message={auth.error}
+        />
       </View>
     </KeyboardAvoidingView>
   );
