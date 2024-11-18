@@ -1,8 +1,12 @@
 import { ProductRequests } from "@/api";
 import { Product } from "@/types/product";
+import { useAppDispatch } from "@app/hooks";
+import { setError, setLoading } from "@app/slices/productSlice";
 import { useEffect, useState } from "react";
 
 const useProducts = () => {
+
+    const dispatch = useAppDispatch();
 
     const [data, setData] = useState<Product[]>([]);
 
@@ -10,21 +14,15 @@ const useProducts = () => {
         getProducts();
     }, []);
 
-    const getProducts = async () => {
+    const getProducts = async () => {                
+        dispatch(setLoading(true));
         try {
             const response = await ProductRequests.getProducts();
-            setData(response.data);            
+            setData(response.data);        
+            dispatch(setLoading(false));    
         } catch (error: any) {
-            console.log(error);
-        }
-    };
-
-    const getProduct = async (id: number) => {
-        try {
-            const response = await ProductRequests.getProduct(id);
-            return response.data;
-        } catch (error: any) {
-            console.log(error);
+            dispatch(setError(error.response.data));
+            dispatch(setLoading(false));
         }
     };
 

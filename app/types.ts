@@ -1,11 +1,11 @@
 import { Product } from "@/types/product";
 
 export interface AuthState {
-    isLoggedIn: boolean;
     error?: string;
+    isLoggedIn: boolean;
 }
 
 export interface ProductState {
-  data: Product[];
   error?: string;
+  loading: boolean;
 }

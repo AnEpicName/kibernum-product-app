@@ -1,31 +1,46 @@
-import { FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 import styles from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Card, SearchBar } from "@/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import { useNavigation } from "@react-navigation/native";
+import { useAppSelector } from "@app/hooks";
+import { ProductSelector } from "@app/slices/productSlice";
 
 const ProductListScreen = () => {
 
   const navigation = useNavigation();
 
+  const product = useAppSelector(ProductSelector);
+
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    console.log(product.loading);
+
+  }, [product.loading]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={filteredProducts}
-        renderItem={({ item }) => 
-          <Card product={item} onPress={() => navigation.navigate("ProductDetail" as never, { product: item })} />
-        }
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-        style={styles.productList}
-        ListEmptyComponent={<Text>No hay productos disponibles</Text>}
-        ListHeaderComponent={<SearchBar onChangeText={setFilteredProducts}/>}
-      />
+      <SearchBar onChangeText={setFilteredProducts} />
+      {!product.loading ?
+        <>
+          <FlatList
+            data={filteredProducts}
+            renderItem={({ item }) =>
+              <Card product={item} onPress={() => navigation.navigate("ProductDetail" as never, { product: item })} />
+            }
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2}
+            style={styles.productList}
+            ListEmptyComponent={<Text style={styles.emptyListText}>No products available</Text>}
+          />
+        </>
+        :
+        <ActivityIndicator size="large" style={styles.loading} />
+      }
     </SafeAreaView>
 
   );

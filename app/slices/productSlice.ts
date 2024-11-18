@@ -3,7 +3,7 @@ import { ProductState } from "@app/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: ProductState = {
-    data: [],
+    loading: false,
     error: undefined,
 };
 
@@ -11,8 +11,8 @@ export const productSlice = createSlice({
     name: "product",
     initialState,
     reducers: {
-        setProducts: (state, action) => {
-            state.data = action.payload;
+        setLoading: (state, action) => {
+            state.loading = action.payload;
         },
         setError: (state, action) => {
             state.error = action.payload;
@@ -20,7 +20,7 @@ export const productSlice = createSlice({
     },
 });
 
-export const { setProducts, setError } = productSlice.actions;
+export const { setError, setLoading } = productSlice.actions;
 
 export const ProductSelector = (state: RootState) => state.product;
 
