@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: "center",
     },
+    sizeText: {
+        fontSize: 16,
+        color: COLOURS.BLACK,
+        textAlign: "center",
+    },
 });  
 
 export default styles;

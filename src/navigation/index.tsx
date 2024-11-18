@@ -29,7 +29,7 @@ const Navigation = () => {
                         />
                         <Stack.Screen
                             name="ProductDetail"
-                            options={{ headerShown: true, headerTitle: "Detalle del producto", headerTitleAlign: "center" }}
+                            options={{ headerShown: true, headerTitle: "Product Detail", headerTitleAlign: "center" }}
                         >
                             {({ route }: ProductDetailScreenProps) =>
                                 <ProductDetailScreen route={route} />

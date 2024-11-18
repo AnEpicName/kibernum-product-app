@@ -37,7 +37,7 @@ const SearchBar = ({onChangeText}: Props) => {
     return (
         <View style={styles.searchBar}>
             <TextInput
-                placeholder="Buscar producto..."
+                placeholder="Search for a product..."
                 style={styles.searchInput}
                 value={searchText}
                 onChangeText={setSearchText}

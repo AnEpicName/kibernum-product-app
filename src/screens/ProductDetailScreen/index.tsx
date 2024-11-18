@@ -39,7 +39,7 @@ const ProductDetailScreen = ({ route }: ProductDetailScreenProps) => {
         {loading ?
           <ActivityIndicator size="small" color="#fff" />
           :
-          <Text style={styles.addToCartButtonText}>Agregar al carrito</Text>
+          <Text style={styles.addToCartButtonText}>Add to cart</Text>
         }
       </Pressable>
     </View>

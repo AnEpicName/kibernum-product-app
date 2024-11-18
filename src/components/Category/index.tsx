@@ -9,7 +9,7 @@ interface Props {
 const Category = ({category}: Props) => {
     return (
         <View style={styles.categoryContainer}>
-            <Text style={styles.categoryTitle}>Categoría:</Text>
+            <Text style={styles.categoryTitle}>Category:</Text>
             <Text style={styles.categoryName}>{category.toUpperCase()}</Text>
         </View>
     );

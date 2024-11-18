@@ -10,7 +10,7 @@ const SizeSelector = () => {
 
     return (
         <View style={styles.sizeSelector}>
-            <Text>Tamaño:</Text>
+            <Text style={styles.sizeText}>Size:</Text>
             <Pressable style={size === "S" ? styles.selectedSizeButton : styles.sizeButton} onPress={() => setSize("S")}>
                 <Text style={styles.sizeButtonText}>S</Text>
             </Pressable>
