@@ -1,13 +1,12 @@
 import { UserRequests } from "@/api";
-import { useAppDispatch, useAppSelector } from "@app/hooks";
-import { setError, AuthSelector, setIsLoggedIn } from "@app/slices/authSlice";
+import { useAppDispatch } from "@app/hooks";
+import { setError, setIsLoggedIn } from "@app/slices/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 
 const useAuth = () => {
     const dispatch = useAppDispatch();
-    const auth = useAppSelector(AuthSelector);
 
     const navigation = useNavigation();
 
@@ -19,11 +18,10 @@ const useAuth = () => {
 
     const getToken = async () => {
         const token = await AsyncStorage.getItem("token");
-        console.log(token);
-        
         if (token) {
             dispatch(setIsLoggedIn(true));
             navigation.navigate("ProductList" as never);
+
         } else {
             dispatch(setIsLoggedIn(false));
             navigation.navigate("Login" as never);

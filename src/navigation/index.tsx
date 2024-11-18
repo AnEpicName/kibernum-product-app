@@ -4,15 +4,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useAppSelector } from "@app/hooks";
 import { AuthSelector } from "@app/slices/authSlice";
 import { ProductDetailScreenProps } from "@/types/navigation";
-import { CloseSessionModal, CustomHeader } from "@/components";
-import { useState } from "react";
+import { CustomHeader } from "@/components";
+import { COLOURS } from "@/constants";
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
     const auth = useAppSelector(AuthSelector);
-
-    const [showModal, setShowModal] = useState(false);
 
     return (
         <NavigationContainer>
@@ -23,12 +21,18 @@ const Navigation = () => {
                             name="ProductList"
                             component={ProductListScreen}
                             options={{
-                                header: () => <CustomHeader onProfilePicPress={() => setShowModal(true)} />,
+                                header: () => <CustomHeader/>,
                             }}
                         />
                         <Stack.Screen
                             name="ProductDetail"
-                            options={{ headerShown: true, headerTitle: "Product Detail", headerTitleAlign: "center" }}
+                            options={{ 
+                                headerShown: true, 
+                                headerTitle: "Product Detail", 
+                                headerTitleAlign: "center",
+                                headerStyle: { backgroundColor: COLOURS.PRIMARY },
+                                headerTintColor: COLOURS.WHITE,
+                            }}
                         >
                             {({ route }: ProductDetailScreenProps) =>
                                 <ProductDetailScreen route={route} />
@@ -36,17 +40,13 @@ const Navigation = () => {
                         </Stack.Screen>
                     </>
                 ) : (
-                    <Stack.Screen 
-                        name="Login" 
-                        component={LoginScreen} 
+                    <Stack.Screen
+                        name="Login"
+                        component={LoginScreen}
                         options={{ headerShown: false }}
                     />
                 )}
             </Stack.Navigator>
-            <CloseSessionModal 
-                visible={showModal} 
-                onClose={() => setShowModal(false)}
-            />
         </NavigationContainer>
     )
 }

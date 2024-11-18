@@ -1,7 +1,6 @@
 import { Modal, Pressable, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
-
-import styles from "./styles";
 import { useAuth } from "@/hooks";
+import styles from "./styles";
 
 interface Props {
     visible?: boolean;
@@ -12,8 +11,9 @@ const CloseSessionModal = ({ visible, onClose }: Props) => {
     return (
         <Modal
             visible={visible}
-            animationType="slide"
+            animationType="fade"
             transparent={true}
+            statusBarTranslucent={true}
         >
             <TouchableWithoutFeedback onPress={() => onClose!()}>
                 <View style={styles.modalOverlay}>

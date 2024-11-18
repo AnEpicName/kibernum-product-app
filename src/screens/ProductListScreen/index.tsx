@@ -17,11 +17,6 @@ const ProductListScreen = () => {
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    console.log(product.loading);
-
-  }, [product.loading]);
-
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar onChangeText={setFilteredProducts} />
@@ -30,7 +25,7 @@ const ProductListScreen = () => {
           <FlatList
             data={filteredProducts}
             renderItem={({ item }) =>
-              <Card product={item} onPress={() => navigation.navigate("ProductDetail" as never, { product: item })} />
+              <Card product={item} onPress={() => navigation.navigate("ProductDetail", { product: item })} />
             }
             keyExtractor={(item) => item.id.toString()}
             numColumns={2}

@@ -32,7 +32,7 @@ const ProductDetailScreen = ({ route }: ProductDetailScreenProps) => {
         onPress={() => {
           setLoading(true);
           setTimeout(() => {
-            navigation.navigate("ProductList");
+            navigation.navigate("ProductList" as never);
             setLoading(false);
           }, 2000);
         }}
