@@ -5,7 +5,6 @@ import { useAppSelector } from "@app/hooks";
 import { AuthSelector } from "@app/slices/authSlice";
 import { ProductDetailScreenProps } from "@/types/navigation";
 import { CloseSessionModal, CustomHeader } from "@/components";
-import { Modal } from "react-native";
 import { useState } from "react";
 
 const Stack = createNativeStackNavigator();

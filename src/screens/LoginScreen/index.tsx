@@ -1,4 +1,4 @@
-import useAuth from "@/hooks/useAuth";
+import { useAuth } from "@/hooks";
 import { useAppSelector } from "@app/hooks";
 import { AuthSelector } from "@app/slices/authSlice";
 import { useState } from "react";

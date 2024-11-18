@@ -1,5 +1,3 @@
-import { Product } from "@/types/product";
-
 export interface AuthState {
     error?: string;
     isLoggedIn: boolean;

@@ -1,7 +1,7 @@
 import { Modal, Pressable, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
 import styles from "./styles";
-import useAuth from "@/hooks/useAuth";
+import { useAuth } from "@/hooks";
 
 interface Props {
     visible?: boolean;

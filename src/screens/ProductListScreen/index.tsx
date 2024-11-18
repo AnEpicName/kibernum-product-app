@@ -1,6 +1,4 @@
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
-
-import styles from "./styles";
+import { ActivityIndicator, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Card, SearchBar } from "@/components";
 import { useEffect, useState } from "react";
@@ -8,6 +6,8 @@ import { Product } from "@/types/product";
 import { useNavigation } from "@react-navigation/native";
 import { useAppSelector } from "@app/hooks";
 import { ProductSelector } from "@app/slices/productSlice";
+
+import styles from "./styles";
 
 const ProductListScreen = () => {
 

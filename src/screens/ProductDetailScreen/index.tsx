@@ -1,10 +1,11 @@
 import { ActivityIndicator, Image, Pressable, ScrollView, Text, View } from "react-native";
-
-import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { Category, SizeSelector } from "@/components";
 import { ProductDetailScreenProps } from "@/types/navigation";
 import { useState } from "react";
+
+import styles from "./styles";
+
 
 const ProductDetailScreen = ({ route }: ProductDetailScreenProps) => {
   const { product } = route.params;
