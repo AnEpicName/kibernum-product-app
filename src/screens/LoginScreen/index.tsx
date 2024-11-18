@@ -12,8 +12,8 @@ const Login = () => {
 
   const auth = useAppSelector(AuthSelector);
 
-  const [username, setUsername] = useState<string>("mor_2314s");
-  const [password, setPassword] = useState<string>("83r5^_");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   
   useEffect(() => {
     checkToken();
