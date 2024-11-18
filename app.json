@@ -4,11 +4,11 @@
     "slug": "kibernum-product-app-test",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/kibernum_logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./src/assets/kibernum_store_splash.gif",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,13 +17,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/kibernum_logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.kibernumproductapptest"
+      "package": "com.kibernum.demostore"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "89dd6b8b-dd07-40d1-98a5-0505fce035c3"
+      }
     }
   }
 }
