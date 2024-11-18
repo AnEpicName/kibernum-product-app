@@ -1,19 +1,23 @@
 import { useAuth } from "@/hooks";
 import { useAppSelector } from "@app/hooks";
 import { AuthSelector } from "@app/slices/authSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, TextInput, View, Modal, TouchableOpacity, TouchableWithoutFeedback, Pressable, Image, KeyboardAvoidingView, Platform, ActivityIndicator } from "react-native";
 
 import styles from "./styles";
 import { ErrorModal } from "@/components";
 
 const Login = () => {
-  const { loading, login, clearError } = useAuth();
+  const { loading, login, clearError, checkToken } = useAuth();
 
   const auth = useAppSelector(AuthSelector);
 
   const [username, setUsername] = useState<string>("mor_2314s");
   const [password, setPassword] = useState<string>("83r5^_");
+  
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   const Separator = () => <View style={styles.separator} />;
 

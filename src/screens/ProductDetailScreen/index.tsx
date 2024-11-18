@@ -2,17 +2,23 @@ import { ActivityIndicator, Image, Pressable, ScrollView, Text, View } from "rea
 import { useNavigation } from "@react-navigation/native";
 import { Category, SizeSelector } from "@/components";
 import { ProductDetailScreenProps } from "@/types/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./styles";
-
+import { useAuth } from "@/hooks";
 
 const ProductDetailScreen = ({ route }: ProductDetailScreenProps) => {
   const { product } = route.params;
 
   const navigation = useNavigation();
 
+  const { checkToken } = useAuth();
+
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   return (
     <View style={styles.container} >

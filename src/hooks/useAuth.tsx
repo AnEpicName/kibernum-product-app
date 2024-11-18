@@ -2,29 +2,19 @@ import { UserRequests } from "@/api";
 import { useAppDispatch } from "@app/hooks";
 import { setError, setIsLoggedIn } from "@app/slices/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { CommonActions, useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useAuth = () => {
     const dispatch = useAppDispatch();
 
-    const navigation = useNavigation();
-
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        getToken();
-    }, []);
-
-    const getToken = async () => {
+    const checkToken = async () => {
         const token = await AsyncStorage.getItem("token");
         if (token) {
             dispatch(setIsLoggedIn(true));
-            navigation.navigate("ProductList" as never);
-
         } else {
             dispatch(setIsLoggedIn(false));
-            navigation.navigate("Login" as never);
         }
     };
 
@@ -37,7 +27,7 @@ const useAuth = () => {
         try {
             const response = await UserRequests.loginUser(username, password);
             await AsyncStorage.setItem("token", response.data.token);
-            getToken();
+            checkToken();
         } catch (error: any) {
             dispatch(setError(error.response.data));
         }
@@ -54,7 +44,7 @@ const useAuth = () => {
         dispatch(setError(undefined));
     };
 
-    return { loading, login, logout, clearError };
+    return { loading, login, logout, clearError, checkToken };
 }
 
 export default useAuth;

@@ -1,22 +1,28 @@
 import { ActivityIndicator, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Card, ErrorModal, SearchBar } from "@/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import { useNavigation } from "@react-navigation/native";
-import { useAppDispatch, useAppSelector } from "@app/hooks";
+import { useAppSelector } from "@app/hooks";
 import { ProductSelector, setError } from "@app/slices/productSlice";
 
 import styles from "./styles";
+import { useAuth } from "@/hooks";
 
 const ProductListScreen = () => {
 
   const navigation = useNavigation();
 
   const product = useAppSelector(ProductSelector);
-  const dispatch = useAppDispatch();
+
+  const { checkToken } = useAuth();
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
